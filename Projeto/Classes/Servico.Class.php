@@ -45,14 +45,13 @@ class Servico extends Crud{
     #Implementando a Função Abastrata
 
     public function inserir(){
-        $nome = $this->getNome();
-        $descricao = $this->getDescricao();
-        $preco = $this->getPreco();
-        $sqlInserir = "INSERT INTO $this->tabela (nomeServico, descricaoServico,precoServico) VALUES ('$nome','$descricao',$preco)";
-        echo $sqlInserir;
-        if(Conexao::prepare($sqlInserir)){
-            header('location: servicos.php');
-        }
+        $sqlInserir = "INSERT INTO $this->tabela (nomeServico, descricaoServico,precoServico) VALUES (:nome,:descricao,:preco)";
+
+        $stmt = Conexao::prepare($sqlInserir);
+        $stmt->bindParam(':login',$this->servico)
+        // $stmt->bindParam(':login',$this->usuario,PDO::PARAM_STR);
+        // $stmt->bindParam(':senha',$this->senha,PDO::PARAM_STR);
+        // $stmt->execute();
     }
 
     public function atualizar($campo,$id)
