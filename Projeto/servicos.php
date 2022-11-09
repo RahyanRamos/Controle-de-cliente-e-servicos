@@ -10,9 +10,6 @@
 </head>
 
 <body>
-    <header>
-
-    </header>
     <?php include_once '_parts/_header.php'; ?>
     <div class="container mt-3">
         <table class="table">
@@ -32,9 +29,7 @@
                 });
 
                 $servico = new Servico();
-                $id = filter_input(INPUT_GET,'id');
-                $result = $servico->listar();
-                while ($row = $result->fetch_object()) {
+                foreach($servico->listar() as $key => $row){
                 ?>
                     <tr>
                         <td class="text-center"><?php echo $row->idServico; ?></td>

@@ -26,11 +26,6 @@
             $usuario = new User();
             $id = filter_input(INPUT_GET, 'idDel');
             $usuario->deletar('idUsuario',$id);
-        ?>
-            <script>
-                window.location.href = 'usuarios.php';
-            </script>
-        <?php
         }
         if (filter_has_var(INPUT_POST, 'btnGravar')) {
             $usuario = new User();
@@ -46,6 +41,11 @@
                 } else {
                     $usuario->atualizar('idUsuario', $id);
                 }
+                ?>
+                    <script>
+                        window.location.href = 'usuarios.php';
+                    </script>
+                <?php
             }else{
                 ?>
                 <script>

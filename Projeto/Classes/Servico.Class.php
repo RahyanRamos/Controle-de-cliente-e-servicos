@@ -50,7 +50,7 @@ class Servico extends Crud{
         $preco = $this->getPreco();
         $sqlInserir = "INSERT INTO $this->tabela (nomeServico, descricaoServico,precoServico) VALUES ('$nome','$descricao',$preco)";
         echo $sqlInserir;
-        if(Conexao::query($sqlInserir)){
+        if(Conexao::prepare($sqlInserir)){
             header('location: servicos.php');
         }
     }
@@ -61,7 +61,7 @@ class Servico extends Crud{
         $descricao = $this->getDescricao();
         $preco = $this->getPreco();
         $sqlInserir = "UPDATE $this->tabela SET nomeServico = '$nome', descricaoServico = '$descricao', precoServico = $preco where $campo=$id" ;
-        if(Conexao::query($sqlInserir)){
+        if(Conexao::prepare($sqlInserir)){
             header('location: servicos.php');
         }
         
