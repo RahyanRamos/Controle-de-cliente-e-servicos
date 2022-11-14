@@ -15,6 +15,12 @@
     </header>
     <?php include_once '_parts/_header.php'; ?>
     <div class="container mt-3">
+        <?php
+            spl_autoload_register(function($class){
+                require_once "./Classes/{$class}.class.php";
+            });
+        ?>
+
         <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
             <div class="row">
                 <div class="col-md-2">
@@ -30,9 +36,32 @@
                 <div class="col-md-8">
                     <label for="sltCliente" class="form-label"></label>
                     <select name="sltCliente" id="sltCliente" class="form-select">
-                        <option value="">Selecione o cliente</option>
+                        <?php
+                            $cliente = new Cliente();
+                            $rows = $cliente->listaOrdenada("nomeCliente");
+
+                            while ($row = $rows->fetch_object()) {
+                                ?>
+                                <option value="<?php echo $row->idCliente ?>"><?php echo $row->nomeCliente ?></option>
+                                <?php
+                            }
+                        ?>
                     </select>
                 </div>
+            </div>
+            <div class="row">
+                <table>
+                    <thead>
+                        <th>#</th>
+                        <th>Serviço</th>
+                        <th>Quantidade</th>
+                        <th>Valor</th>
+                        <th>Total</th>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
             </div>
         </form>
     </div>

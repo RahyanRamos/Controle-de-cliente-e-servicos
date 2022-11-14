@@ -25,4 +25,14 @@
             $stmt->bindParam(':idDel',$id,PDO::PARAM_INT);
             $stmt->execute();
         }
+
+        public function listaOrdenada($campo, $tipo = "C"){
+            sqlLista = "select * from {$this->tabela} order by $campo";
+
+            if($tipo === "D"){
+                $sqlLista .= " desc";
+            }
+
+            return Conexao::prepare($sqlLista);
+        }
     }
